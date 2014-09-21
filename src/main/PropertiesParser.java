@@ -10,8 +10,9 @@ public class PropertiesParser {
 
     public Properties read(File file) throws IOException {
         Properties properties = new Properties();
-        InputStream inputStream = new FileInputStream(file);
-        properties.load(inputStream);
+        try (InputStream inputStream = new FileInputStream(file) ){
+            properties.load(inputStream);
+        }
         return properties;
     }
 }
